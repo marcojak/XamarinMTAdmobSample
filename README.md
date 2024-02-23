@@ -12,7 +12,7 @@
 If you like, you can use the unlicensed version of the plugin and implement your choice of Certified CMP.
 The license will help me to continue updating and supporting this plugin adding all the newer features that Google implements.**
 
-If you are looking for the Xamarin version of this plugin, you can visit: [MTAdmob](https://github.com/marcojak/MTAdmob)
+If you are looking for the MAUI version of this plugin, you can visit: [MauiMTAdmob](https://github.com/marcojak/MauiMTAdmob)
 
 ## Current Status
 
