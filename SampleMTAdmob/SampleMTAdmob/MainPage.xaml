@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
+             mc:Ignorable="d"
+             x:Class="SampleMTAdmob.MainPage">
+
+    <StackLayout>
+        <Label Text="MTAdmob" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Start" />
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout Margin="5" Spacing="5" MinimumHeightRequest="200">
+                <Frame Padding="5">
+                    <StackLayout Spacing="1">
+                        <Label Text="Banner" />
+                        <controls:MTAdView BackgroundColor="Transparent"
+                 x:Name="myAds"
+                 AdsId="ca-app-pub-3940256099942544/6300978111"
+                 AdSize="AnchoredAdaptive"
+                 AutoSize="True"
+                 IsVisible="true"
+                 AdsClicked="MyAds_AdsClicked"
+                 AdsClosed="MyAds_AdVClosed"
+                 AdsFailedToLoad="MyAds_AdFailedToLoad"              
+                 AdsImpression="MyAds_AdVImpression"
+                 AdsLoaded="MyAds_AdLoaded"
+                 AdsOpened="MyAds_AdVOpened"/>
+                        <Button Text="Load Banner" Clicked="LoadBanner" Margin="5" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+               
+                <Frame Padding="5">
+                    <Grid RowDefinitions="Auto,*" ColumnDefinitions="*,*,*">
+                        <Label Grid.Row="0" Grid.ColumnSpan="3" Text="Interstitial"/>
+                        <Button Grid.Row="1" Grid.Column="0" Text="Load" Clicked="LoadInterstitial_OnClicked" Margin="5"/>
+                        <Button Grid.Row="1" Grid.Column="1" Text="Show" Clicked="ShowInterstitial_OnClicked" Margin="5"/>
+                        <Button Grid.Row="1" Grid.Column="2" Text="Is Loaded" Clicked="IsLoadedInterstitial_OnClicked" Margin="5"/>
+                    </Grid>
+                </Frame>
+
+                <Frame Padding="5">
+                    <Grid RowDefinitions="Auto,*" ColumnDefinitions="*,*,*">
+                        <Label Grid.Row="0" Grid.ColumnSpan="3" Text="Rewarded"/>
+                        <Button Grid.Row="1" Grid.Column="0" Text="Load" Clicked="LoadReward_OnClicked" Margin="5"/>
+                        <Button Grid.Row="1" Grid.Column="1" Text="Show" Clicked="ShowReward_OnClicked" Margin="5"/>
+                        <Button Grid.Row="1" Grid.Column="2" Text="Is Loaded" Clicked="IsRewardLoaded_OnClicked" Margin="5"/>
+                    </Grid>
+                </Frame>
+
+                <Frame Padding="5">
+                    <Grid RowDefinitions="Auto,*" ColumnDefinitions="*,*,*">
+                        <Label Grid.Row="0" Grid.ColumnSpan="3" Text="Rewarded Interstitial"/>
+                        <Button Grid.Row="1" Grid.Column="0" Text="Load" Clicked="LoadRewardInterstitial_OnClicked" Margin="5"/>
+                        <Button Grid.Row="1" Grid.Column="1" Text="Show" Clicked="ShowRewardInterstitial_OnClicked" Margin="5"/>
+                        <Button Grid.Row="1" Grid.Column="2" Text="Is Loaded" Clicked="IsRewardInterstitialLoaded_OnClicked" Margin="5"/>
+                    </Grid>
+                </Frame>
+
+                <Frame>
+                    <StackLayout Spacing="1">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="UMP (PRO)" Margin="5"/>
+                            <Label x:Name="LabelLicense" Text="Not licensed" Margin="5"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                            <Button Text="Show Form" Clicked="Button_Clicked"  Margin="5"/>
+                            <Button Text="Reset" Clicked="ResetForm"  Margin="5"/>
+                            <Button Text="Check Consent" Clicked="CheckConsent"  Margin="5"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                            <Button Text="Check PA" Clicked="Button_Clicked_1"  Margin="5"/>
+                            <Button Text="Check NPA" Clicked="Button_Clicked_2"  Margin="5"/>
+                            <Button Text="Check LA" Clicked="Button_Clicked_3"  Margin="5"/>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Button Text="Next Page" Clicked="NextPage" Margin="5" HorizontalOptions="Center"/>
+            </StackLayout>
+        </ScrollView>
+        <Frame Margin="5,1">
+            <StackLayout Margin="5">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Events" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"/>
+                    <Label Text="Clear events" HorizontalTextAlignment="End">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ClearEvents"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+                <StackLayout x:Name="MyStack" Margin="5">
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+        <Frame Margin="5,1">
+            <Label Margin="5" x:Name="myLabel" Text="Ads loading result" HorizontalOptions="Center" VerticalOptions="Start" />
+        </Frame>
+    </StackLayout>
+
+</ContentPage>
