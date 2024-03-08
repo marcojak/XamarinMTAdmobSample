@@ -64,7 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MarcTron.Admob">
-      <Version>2.2.0</Version>
+      <Version>2.2.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Work.Runtime">
       <Version>2.7.0</Version>
@@ -116,7 +116,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadXFormsNugetUpgradeInfoBarSampleMTAdmobAndroidHideInfoBar="True" TriggeredFromHotReload="False" />
+      <UserProperties TriggeredFromHotReload="False" XamarinHotReloadXFormsNugetUpgradeInfoBarSampleMTAdmobAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
