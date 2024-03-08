@@ -2,7 +2,7 @@
 # Xamarin MTAdmob sample project
 
 #### Package name: MarcTron.Admob 
-#### Latest version: 2.2.0
+#### Latest version: 2.2.2
 #### Nuget link: https://www.nuget.org/packages/MarcTron.Admob
 #### Guide: https://hightouchinnovation.com/XMTAdmobGuide
 #### To buy the license visit https://hightouchinnovation.com/XMTAdmob
