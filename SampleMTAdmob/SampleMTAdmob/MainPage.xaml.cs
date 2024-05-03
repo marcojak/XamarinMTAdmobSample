@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using MarcTron.Plugin;
@@ -17,8 +16,6 @@ namespace SampleMTAdmob
         public MainPage()
         {
             InitializeComponent();
-            CrossMTAdmob.Current.TestDevices = new List<string>() { "D70290758AB9D6060C3B14AA41DAB53A", "0EB3E09F26C31286957EF0BF27B58A4E" };
-
             CrossMTAdmob.Current.TagForChildDirectedTreatment = MTTagForChildDirectedTreatment.TagForChildDirectedTreatmentUnspecified;
             CrossMTAdmob.Current.TagForUnderAgeOfConsent = MTTagForUnderAgeOfConsent.TagForUnderAgeOfConsentUnspecified;
             CrossMTAdmob.Current.MaxAdContentRating = MTMaxAdContentRating.MaxAdContentRatingG;
@@ -65,12 +62,13 @@ namespace SampleMTAdmob
                 CrossMTAdmob.Current.OnInterstitialImpression += Current_OnInterstitialImpression;
 
                 CrossMTAdmob.Current.OnAppOpenAdLoaded += Current_OnAppOpenAdLoaded;
-                CrossMTAdmob.Current.OnAppOpenFailedToLoad += Current_OnAppOpenAdFailedToLoad;
-                CrossMTAdmob.Current.OnAppOpenOpened += Current_OnAppOpenAdOpened;
-                CrossMTAdmob.Current.OnAppOpenFailedToShow += Current_OnAppOpenAdFailedToShow;
-                CrossMTAdmob.Current.OnAppOpenClosed += Current_OnAppOpenAdClosed;
-                CrossMTAdmob.Current.OnAppOpenClicked += Current_OnAppOpenAdClicked;
-                CrossMTAdmob.Current.OnAppOpenImpression += Current_OnAppOpenAdImpression;
+                CrossMTAdmob.Current.OnAppOpenOpened += Current_OnAppOpenOpened;
+                CrossMTAdmob.Current.OnAppOpenClosed += Current_OnAppOpenClosed;
+                CrossMTAdmob.Current.OnAppOpenFailedToLoad += Current_OnAppOpenFailedToLoad;
+                CrossMTAdmob.Current.OnAppOpenFailedToShow += Current_OnAppOpenFailedToShow;
+                CrossMTAdmob.Current.OnAppOpenImpression += Current_OnAppOpenImpression;
+                CrossMTAdmob.Current.OnAppOpenClicked += Current_OnAppOpenClicked;
+                CrossMTAdmob.Current.OnMobileAdsInitialized += Current_OnMobileAdsInitialized;
             }
         }
 
@@ -229,6 +227,16 @@ namespace SampleMTAdmob
             myLabel.Text = CrossMTAdmob.Current.IsRewardedInterstitialLoaded().ToString();
         }
 
+        private void EmptyRewardedInterstitialList(object sender, EventArgs e)
+        {
+            CrossMTAdmob.Current.EmptyRewardInterstitialAdsList();
+        }
+
+        private void GetNumOfLoadedRewardedInterstitial(object sender, EventArgs e)
+        {
+            myLabel.Text = "Loaded Rewarded Interstitial: " + CrossMTAdmob.Current.GetNumberOfRewarededInterstitialsLoaded().ToString();
+        }
+
         private void LoadInterstitial_OnClicked(object sender, EventArgs e)
         {
             CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
@@ -271,12 +279,12 @@ namespace SampleMTAdmob
             CrossMTAdmob.Current.OnInterstitialImpression -= Current_OnInterstitialImpression;
 
             CrossMTAdmob.Current.OnAppOpenAdLoaded -= Current_OnAppOpenAdLoaded;
-            CrossMTAdmob.Current.OnAppOpenFailedToLoad -= Current_OnAppOpenAdFailedToLoad;
-            CrossMTAdmob.Current.OnAppOpenOpened -= Current_OnAppOpenAdOpened;
-            CrossMTAdmob.Current.OnAppOpenFailedToShow -= Current_OnAppOpenAdFailedToShow;
-            CrossMTAdmob.Current.OnAppOpenClosed -= Current_OnAppOpenAdClosed;
-            CrossMTAdmob.Current.OnAppOpenClicked -= Current_OnAppOpenAdClicked;
-            CrossMTAdmob.Current.OnAppOpenImpression -= Current_OnAppOpenAdImpression;
+            CrossMTAdmob.Current.OnAppOpenOpened -= Current_OnAppOpenOpened;
+            CrossMTAdmob.Current.OnAppOpenClosed -= Current_OnAppOpenClosed;
+            CrossMTAdmob.Current.OnAppOpenFailedToLoad -= Current_OnAppOpenFailedToLoad;
+            CrossMTAdmob.Current.OnAppOpenFailedToShow -= Current_OnAppOpenFailedToShow;
+            CrossMTAdmob.Current.OnAppOpenImpression -= Current_OnAppOpenImpression;
+            CrossMTAdmob.Current.OnAppOpenClicked -= Current_OnAppOpenClicked;
         }
 
         private void Button_Clicked(object sender, EventArgs e)
@@ -313,6 +321,54 @@ namespace SampleMTAdmob
             MyStack.Children.Add(new Label { Text = $"Limited Ads: {canShow}" });
         }
 
+        private void Current_OnAppOpenAdLoaded(object sender, EventArgs e)
+        {
+            MyStack.Children.Add(new Label { Text = "On App Open Ad Loaded" });
+            Debug.WriteLine("OnAppOpenAdLoaded");
+        }
+
+        private void Current_OnAppOpenOpened(object sender, EventArgs e)
+        {
+            MyStack.Children.Add(new Label { Text = "On App Open Opened" });
+            Debug.WriteLine("OnAppOpenOpened");
+        }
+
+        private void Current_OnAppOpenClosed(object sender, EventArgs e)
+        {
+            MyStack.Children.Add(new Label { Text = "On App Open Closed" });
+            Debug.WriteLine("OnAppOpenClosed");
+        }
+
+        private void Current_OnAppOpenFailedToLoad(object sender, MTEventArgs e)
+        {
+            MyStack.Children.Add(new Label { Text = "On App Open Failed To Load" });
+            Debug.WriteLine($"Current_OnAppOpenFailedToLoad: {e.ErrorCode} - {e.ErrorMessage}");
+        }
+
+        private void Current_OnAppOpenFailedToShow(object sender, MTEventArgs e)
+        {
+            MyStack.Children.Add(new Label { Text = "On App Open Failed To Show" });
+            Console.WriteLine($"Current_OnAppOpenFailedToShow: {e.ErrorCode} - {e.ErrorMessage}");
+        }
+
+        private void Current_OnAppOpenImpression(object sender, EventArgs e)
+        {
+            MyStack.Children.Add(new Label { Text = "On App Open Impression" });
+            Debug.WriteLine("Current_OnAppOpenImpression");
+        }
+
+        private void Current_OnAppOpenClicked(object sender, EventArgs e)
+        {
+            MyStack.Children.Add(new Label { Text = "On App Open Clicked" });
+            Debug.WriteLine("Current_OnAppOpenClicked");
+        }
+
+        private void Current_OnMobileAdsInitialized(object sender, EventArgs e)
+        {
+            MyStack.Children.Add(new Label { Text = "On Mobile Ads Initialized" });
+            Debug.WriteLine("Current_OnMobileAdsInitialized");
+        }
+
         private void LoadBanner(object sender, EventArgs e)
         {
             myAds.LoadAd();
@@ -322,46 +378,30 @@ namespace SampleMTAdmob
         {
             MyStack.Children.Clear();
         }
-        private void Current_OnAppOpenAdImpression(object sender, EventArgs e)
+
+        private void GetNumOfLoadedInterstitials(object sender, EventArgs e)
         {
-            MyStack.Children.Add(new Label { Text = "On App Open Ad Impression" });
-            Debug.WriteLine("OnAppOpenAdImpression");
+            myLabel.Text = "Loaded Interstitials: " + CrossMTAdmob.Current.GetNumberOfInterstitialsLoaded().ToString();
         }
 
-        private void Current_OnAppOpenAdClicked(object sender, EventArgs e)
+        private void EmptyInterstitialList(object sender, EventArgs e)
         {
-            MyStack.Children.Add(new Label { Text = "On App Open Ad Clicked" });
-            Debug.WriteLine("OnAppOpenAdClicked");
+            CrossMTAdmob.Current.EmptyInterstitialAdsList();
         }
 
-        private void Current_OnAppOpenAdClosed(object sender, EventArgs e)
+        private void GetNumOfLoadedRewarded(object sender, EventArgs e)
         {
-            MyStack.Children.Add(new Label { Text = "On App Open Ad Closed" });
-            Debug.WriteLine("OnAppOpenAdClosed");
+            myLabel.Text = "Loaded Rewarded: " + CrossMTAdmob.Current.GetNumberOfRewarededLoaded().ToString();
         }
 
-        private void Current_OnAppOpenAdFailedToShow(object sender, MTEventArgs e)
+        private void EmptyRewardedList(object sender, EventArgs e)
         {
-            MyStack.Children.Add(new Label { Text = "On App Open Ad Failed to Show" });
-            Debug.WriteLine($"OnAppOpenAdFailedToShow: {e.ErrorCode} - {e.ErrorMessage}");
+            CrossMTAdmob.Current.EmptyRewardedAdsList();
         }
 
-        private void Current_OnAppOpenAdOpened(object sender, EventArgs e)
+        private void IsRewardLoadedInterstitial_OnClicked(object sender, EventArgs e)
         {
-            MyStack.Children.Add(new Label { Text = "On App Open Ad Opened" });
-            Debug.WriteLine("OnAppOpenAdOpened");
-        }
-
-        private void Current_OnAppOpenAdFailedToLoad(object sender, MTEventArgs e)
-        {
-            MyStack.Children.Add(new Label { Text = "On App Open Ad Failed to Load" });
-            Debug.WriteLine($"OnAppOpenAdFailedToLoad: {e.ErrorCode} - {e.ErrorMessage}");
-        }
-
-        private void Current_OnAppOpenAdLoaded(object sender, EventArgs e)
-        {
-            MyStack.Children.Add(new Label { Text = "On App Open Ad Loaded" });
-            Debug.WriteLine("OnAppOpenAdLoaded");
+            myLabel.Text = "Rewarded Interstitial loaded: " + CrossMTAdmob.Current.IsRewardedInterstitialLoaded().ToString();
         }
     }
 }

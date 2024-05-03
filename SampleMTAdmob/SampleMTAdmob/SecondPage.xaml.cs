@@ -23,6 +23,13 @@ public partial class SecondPage : ContentPage
             SetEvents();
         }
 
+        override protected void OnDisappearing()
+        {
+            base.OnDisappearing();
+            DisableEvents();
+            myAds.Destroy();
+        }
+
         protected override bool OnBackButtonPressed()
         {
             DisableEvents();

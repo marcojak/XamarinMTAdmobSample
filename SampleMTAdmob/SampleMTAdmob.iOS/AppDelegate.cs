@@ -23,10 +23,12 @@ namespace SampleMTAdmob.iOS
             Xamarin.Forms.Forms.Init();
 
             string license = "wPoUz+iRtDjdJeAEifYnW8IZyoUuRrorUljh/1we2cN8LBsyQUL5cWezi3CRoSIG/THxiL1lsblsaKHgFxf+LgPmbhbBr14QdtBbbiVs6k3rwCs4NfzEtMozbW4xKPorYaD+YmrYupRZkNL1IdgbK4RqJn37lP5olfpdIVAIT4Y=|i94UXHKKoqNjtnV7GxmyWAo1xIApF2NUJSOUwVZx9IQ=";
-            string deviceId = ""; //<--- Your test device id here
+            string testDeviceId = ""; //<--- Your test device id here
             string OPENADS_AD_UNIT_ID = "ca-app-pub-3940256099942544/5575463023";
+            bool enableOpenAds = true;
+            bool tagForUnderAgeconsent = false;
 
-            CrossMTAdmob.Current.Init(license, OPENADS_AD_UNIT_ID, true, false, deviceId, DebugGeography.DEBUG_GEOGRAPHY_EEA);
+            CrossMTAdmob.Current.Init(license, OPENADS_AD_UNIT_ID, enableOpenAds, tagForUnderAgeconsent, testDeviceId, DebugGeography.DEBUG_GEOGRAPHY_EEA);
 
             LoadApplication(new App());
 

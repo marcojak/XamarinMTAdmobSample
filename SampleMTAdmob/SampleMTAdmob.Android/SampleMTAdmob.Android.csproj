@@ -64,7 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MarcTron.Admob">
-      <Version>2.2.3</Version>
+      <Version>2.3.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Work.Runtime">
       <Version>2.7.0</Version>
@@ -108,6 +108,10 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\MTAdmobPRO\MTAdmobPro.csproj">
+      <Project>{ed59dd39-c062-475c-8ac7-f96579db7e19}</Project>
+      <Name>MTAdmobPro</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SampleMTAdmob\SampleMTAdmob.csproj">
       <Project>{F933088F-417F-4470-A8DA-3AD30F56D518}</Project>
       <Name>SampleMTAdmob</Name>
@@ -116,7 +120,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties TriggeredFromHotReload="False" XamarinHotReloadXFormsNugetUpgradeInfoBarSampleMTAdmobAndroidHideInfoBar="True" />
+      <UserProperties XamarinHotReloadXFormsNugetUpgradeInfoBarSampleMTAdmobAndroidHideInfoBar="True" TriggeredFromHotReload="False" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
