@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using MarcTron.Plugin;
@@ -16,6 +17,8 @@ namespace SampleMTAdmob
         public MainPage()
         {
             InitializeComponent();
+            CrossMTAdmob.Current.TestDevices = new List<string>() { "D70290758AB9D6060C3B14AA41DAB53A", "0EB3E09F26C31286957EF0BF27B58A4E", "C44999673C1A6EDCE0DA791B8E5436C1" };
+
             CrossMTAdmob.Current.TagForChildDirectedTreatment = MTTagForChildDirectedTreatment.TagForChildDirectedTreatmentUnspecified;
             CrossMTAdmob.Current.TagForUnderAgeOfConsent = MTTagForUnderAgeOfConsent.TagForUnderAgeOfConsentUnspecified;
             CrossMTAdmob.Current.MaxAdContentRating = MTMaxAdContentRating.MaxAdContentRatingG;
@@ -371,7 +374,19 @@ namespace SampleMTAdmob
 
         private void LoadBanner(object sender, EventArgs e)
         {
-            myAds.LoadAd();
+            myAds.LoadAd(GetCollapsibleMode());
+        }
+        
+        private CollapsibleBannerMode GetCollapsibleMode()
+        {
+            if (rbNone.IsChecked)
+                return CollapsibleBannerMode.None;
+            if (rbTop.IsChecked)
+                return CollapsibleBannerMode.Top;
+            if (rbBottom.IsChecked)
+                return CollapsibleBannerMode.Bottom;
+
+            return CollapsibleBannerMode.None;
         }
 
         private void ClearEvents(object sender, EventArgs e)
@@ -391,7 +406,7 @@ namespace SampleMTAdmob
 
         private void GetNumOfLoadedRewarded(object sender, EventArgs e)
         {
-            myLabel.Text = "Loaded Rewarded: " + CrossMTAdmob.Current.GetNumberOfRewarededLoaded().ToString();
+            myLabel.Text = "Loaded Rewarded: " + CrossMTAdmob.Current.GetNumberOfRewardedLoaded().ToString();
         }
 
         private void EmptyRewardedList(object sender, EventArgs e)
@@ -402,6 +417,12 @@ namespace SampleMTAdmob
         private void IsRewardLoadedInterstitial_OnClicked(object sender, EventArgs e)
         {
             myLabel.Text = "Rewarded Interstitial loaded: " + CrossMTAdmob.Current.IsRewardedInterstitialLoaded().ToString();
+        }
+
+        private void ShowConsent(object sender, EventArgs e)
+        {
+            CrossMTAdmob.Current.InitialiseAndShowConsentForm();
+            Debug.WriteLine("Initialise And Show Consent Form");
         }
     }
 }

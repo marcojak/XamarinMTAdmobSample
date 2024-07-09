@@ -64,22 +64,33 @@
         <Label Text="MTAdmob" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Start" />
         <ScrollView VerticalOptions="FillAndExpand">
             <StackLayout Margin="5" Spacing="5" MinimumHeightRequest="200">
-                <Frame Padding="5">
-                    <StackLayout Spacing="1">
+                <Frame Padding="5" HasShadow="False" BorderColor="Black" CornerRadius="5">
+                    <StackLayout>
+                        <Label Text="Consent" />
+                        <Button Text="Show consent" Clicked="ShowConsent" Margin="5" HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+                <Frame Padding="5" HasShadow="False" BorderColor="Black" CornerRadius="5">
+                    <StackLayout>
                         <Label Text="Banner" />
                         <controls:MTAdView BackgroundColor="Transparent"
-                 x:Name="myAds"
-                 AdsId="ca-app-pub-3940256099942544/2014213617"
-                 AdSize="AnchoredAdaptive"
-                 AutoSize="True"
-                 IsVisible="true"
-                 AdsClicked="MyAds_AdsClicked"
-                 AdsClosed="MyAds_AdVClosed"
-                 AdsFailedToLoad="MyAds_AdFailedToLoad"              
-                 AdsImpression="MyAds_AdVImpression"
-                 AdsLoaded="MyAds_AdLoaded"
-                 AdsOpened="MyAds_AdVOpened"/>
+                                           x:Name="myAds"
+                                           AdsId="ca-app-pub-3940256099942544/2014213617"
+                                           AdSize="AnchoredAdaptive"
+                                           IsVisible="true"
+                                           AdsClicked="MyAds_AdsClicked"
+                                           AdsClosed="MyAds_AdVClosed"
+                                           AdsFailedToLoad="MyAds_AdFailedToLoad"
+                                           AdsImpression="MyAds_AdVImpression"
+                                           AdsLoaded="MyAds_AdLoaded"
+                                           AdsOpened="MyAds_AdVOpened"/>
                         <Button Text="Load Banner" Clicked="LoadBanner" Margin="5" HorizontalOptions="Center"/>
+                        <Label Text="Collapsible mode" HorizontalOptions="Center"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                            <RadioButton x:Name="rbNone" Content="None" IsChecked="True" />
+                            <RadioButton x:Name="rbTop" Content="Top" />
+                            <RadioButton x:Name="rbBottom" Content="Bottom"/>
+                        </StackLayout>
                     </StackLayout>
                 </Frame>
 
@@ -95,46 +106,46 @@
                     </StackLayout>
                 </Frame>-->
 
-                <Frame Padding="5">
+                <Frame Padding="5" HasShadow="False" BorderColor="Black" CornerRadius="5">
                     <StackLayout>
                         <Label Text="Interstitial"/>
                         <FlexLayout AlignItems="Center" JustifyContent="Center" Wrap="Wrap">
-                            <Button Text="Load" Clicked="LoadInterstitial_OnClicked" Margin="2"/>
-                            <Button Text="Show" Clicked="ShowInterstitial_OnClicked" Margin="2"/>
-                            <Button Text="Is Loaded" Clicked="IsLoadedInterstitial_OnClicked" Margin="2"/>
-                            <Button Text="N. of loaded ads" Clicked="GetNumOfLoadedInterstitials" Margin="2"/>
-                            <Button Text="Empty list" Clicked="EmptyInterstitialList" Margin="2"/>
+                            <Button Text="Load" Clicked="LoadInterstitial_OnClicked" Margin="10,2"/>
+                            <Button Text="Show" Clicked="ShowInterstitial_OnClicked" Margin="10,2"/>
+                            <Button Text="Is Loaded?" Clicked="IsLoadedInterstitial_OnClicked" Margin="10,2"/>
+                            <Button Text="Num. of loaded ads" Clicked="GetNumOfLoadedInterstitials" Margin="10,2"/>
+                            <Button Text="Empty list" Clicked="EmptyInterstitialList" Margin="10,2"/>
                         </FlexLayout>
                     </StackLayout>
                 </Frame>
 
-                <Frame Padding="5">
+                <Frame Padding="5" HasShadow="False" BorderColor="Black" CornerRadius="5">
                     <StackLayout>
                         <Label Text="Rewarded"/>
                         <FlexLayout AlignItems="Center" JustifyContent="Center" Wrap="Wrap">
-                            <Button Text="Load" Clicked="LoadReward_OnClicked" Margin="2"/>
-                            <Button Text="Show" Clicked="ShowReward_OnClicked" Margin="2"/>
-                            <Button Text="Is Loaded" Clicked="IsRewardLoaded_OnClicked" Margin="2"/>
-                            <Button Text="N. of loaded ads" Clicked="GetNumOfLoadedRewarded" Margin="2"/>
-                            <Button Text="Empty list" Clicked="EmptyRewardedList" Margin="2"/>
+                            <Button Text="Load" Clicked="LoadReward_OnClicked" Margin="10,2"/>
+                            <Button Text="Show" Clicked="ShowReward_OnClicked" Margin="10,2"/>
+                            <Button Text="Is Loaded?" Clicked="IsRewardLoaded_OnClicked" Margin="10,2"/>
+                            <Button Text="Num. of loaded ads" Clicked="GetNumOfLoadedRewarded" Margin="10,2"/>
+                            <Button Text="Empty list" Clicked="EmptyRewardedList" Margin="10,2"/>
                         </FlexLayout>
                     </StackLayout>
                 </Frame>
 
-                <Frame Padding="5">
+                <Frame Padding="5" HasShadow="False" BorderColor="Black" CornerRadius="5">
                     <StackLayout>
                         <Label Text="Rewarded Interstitial"/>
                         <FlexLayout AlignItems="Center" JustifyContent="Center" Wrap="Wrap">
-                            <Button Text="Load" Clicked="LoadRewardInterstitial_OnClicked" Margin="2"/>
-                            <Button Text="Show" Clicked="ShowRewardInterstitial_OnClicked" Margin="2"/>
-                            <Button Text="Is Loaded" Clicked="IsRewardLoadedInterstitial_OnClicked" Margin="2"/>
-                            <Button Text="N. of loaded ads" Clicked="GetNumOfLoadedRewardedInterstitial" Margin="2"/>
-                            <Button Text="Empty list" Clicked="EmptyRewardedInterstitialList" Margin="2"/>
+                            <Button Text="Load" Clicked="LoadRewardInterstitial_OnClicked" Margin="10,2"/>
+                            <Button Text="Show" Clicked="ShowRewardInterstitial_OnClicked" Margin="10,2"/>
+                            <Button Text="Is Loaded?" Clicked="IsRewardLoadedInterstitial_OnClicked" Margin="10,2"/>
+                            <Button Text="Num. of loaded ads" Clicked="GetNumOfLoadedRewardedInterstitial" Margin="10,2"/>
+                            <Button Text="Empty list" Clicked="EmptyRewardedInterstitialList" Margin="10,2"/>
                         </FlexLayout>
                     </StackLayout>
                 </Frame>
 
-                <Frame>
+                <Frame  HasShadow="False" BorderColor="Black" CornerRadius="5">
                     <StackLayout Spacing="1">
                         <StackLayout Orientation="Horizontal">
                             <Label Text="UMP (PRO)" Margin="5"/>
@@ -155,7 +166,7 @@
                 <Button Text="Next Page" Clicked="NextPage" Margin="5" HorizontalOptions="Center"/>
             </StackLayout>
         </ScrollView>
-        <Frame Margin="5,1">
+        <Frame Margin="5,1" HasShadow="False" BorderColor="Black" CornerRadius="5">
             <StackLayout Margin="5">
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Events" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"/>
